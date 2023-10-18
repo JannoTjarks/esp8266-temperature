@@ -1,0 +1,11 @@
+.pio
+.clang_complete
+.gcc-flags.json
+.ccls
+
+#LSP
+.cache/
+compile_commands.json
+
+#Credentials
+include/configuration.h
