@@ -22,7 +22,7 @@ This is a blueprint of the configuration.h:
 #define WLAN_PASSWORD "<your-wifi-password>"
 
 #define DHT_PIN <number-of-the-used-gpio>
-#define DHT_TYPE <type-of-the-dht-sensor> // Possible values are DHT11 or DTH22
+#define DHT_TYPE <type-of-the-dht-sensor> // Possible values are DHT11 or DHT22
 
 #define MQTT_SERVER "<mqtt-server-ip-or-dns>"
 #define MQTT_HEALTH_TOPIC "<health-topic>"
