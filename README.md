@@ -10,10 +10,10 @@ on the VIN pin. The dth11 sensor needs 3.3V, which can be taken from the
 esp8226. At least the data pin of the esp8226 needs to be connected on a
 gpio. For my setup i use the gpio 5.
 
-I use for the development and upload of the code `platformio`.
+For the development and upload of the code I use `platformio`.
 
 ## Configuration
-Because i use several esp8226 for different rooms, i made the code
+Because I use several esp8226 for different rooms, I made the code
 variablized. The configuration can be set inside the file
 `include/configuration.h`.
 This is a blueprint of the configuration.h:
