@@ -1,4 +1,4 @@
-# esp8266-temperature
+# ESP8266-temperature
 
 This code is the base of my self-developed "smart-home" temperature and 
 humidity sensor based on an ESP8266 with the DTH11. The measurments are sent
@@ -8,7 +8,7 @@ to a mqtt server.
 The wiring is really easy. Powered is the esp8226 with usb or by a power supply
 on the VIN pin. The dth11 sensor needs 3.3V, which can be taken from the
 esp8226. At least the data pin of the esp8226 needs to be connected on a
-gpio. For my setup i use the gpio 5.
+gpio. For my setup I use the gpio 5.
 
 For the development and upload of the code I use `platformio`.
 
