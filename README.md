@@ -8,15 +8,17 @@ to a MQTT server.
 The wiring is really easy. Powered is the ESP8266 with USB or by a power supply
 on the VIN pin. The DHT11 sensor works with 5V or 3.3V, so the VCC pin can be connected
 to the 3.3V output from the ESP8266 directly. The DATA pin of the DHT11 needs
-to be connected to a gpio of the ESP8266. A 10kOhm resistor between the DATA pin and VCC should be used to ensure proper communication. For my setup i use the gpio D5 for the DATA pin.
+to be connected to a gpio of the ESP8266. A 10kOhm resistor between the DATA pin and VCC 
+should be used to ensure proper communication. For my setup I use the gpio D5 for the 
+DATA pin.
 
-I use for the development and upload of the code `platformio`.
+For the development and upload of the code I use `platformio`.
 
 ## Wiring
 ![wiring diagram](docs/images/wiring_diagram.png)
 
 ## Configuration
-Because i use several ESP8266 for different rooms, i made the code
+Because I use several ESP8266 for different rooms, I made the code
 variablized. The configuration can be set inside the file
 `include/configuration.h`.
 This is a blueprint of the configuration.h:
