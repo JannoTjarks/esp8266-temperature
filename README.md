@@ -1,4 +1,4 @@
-# ESP8266-temperature
+# esp8266-temperature
 
 This code is the base of my self-developed "smart-home" temperature and 
 humidity sensor based on an ESP8266 with the DHT11. The measurments are sent
@@ -18,7 +18,7 @@ For the development and upload of the code I use `platformio`.
 ![wiring diagram](docs/images/wiring_diagram.png)
 
 ## Configuration
-Because I use several esp8226 for different rooms, I made the code
+Because I use several ESP8266 for different rooms, I made the code
 variablized. The configuration can be set inside the file
 `include/configuration.h`.
 This is a blueprint of the configuration.h:
