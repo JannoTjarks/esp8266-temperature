@@ -15,7 +15,6 @@ float get_temperature();
 float get_humidity();
 
 DHT dht(DHT_PIN, DHT_TYPE);
-sensors_event_t event;
 
 WiFiClient espClient;
 PubSubClient mqtt_client(espClient);
