@@ -39,7 +39,7 @@ void loop() {
 
   send_measurements_to_mqtt();
 
-  delay(30000);
+  delay(UPDATE_INTERVAL);
 }
 
 void setup_wifi() {
