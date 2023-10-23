@@ -11,8 +11,8 @@ void loop();
 void setup_wifi();
 void mqtt_reconnect();
 void send_measurements_to_mqtt();
-String get_temperature();
-String get_humidity();
+float get_temperature();
+float get_humidity();
 
 DHT_Unified dht(DHT_PIN, DHT_TYPE);
 sensors_event_t event;
@@ -40,7 +40,7 @@ void loop() {
 
   send_measurements_to_mqtt();
 
-  delay(30000);
+  delay(UPDATE_INTERVAL);
 }
 
 void setup_wifi() {
@@ -74,31 +74,31 @@ void mqtt_reconnect() {
 
 void send_measurements_to_mqtt() {
   Serial.println("Send temperature to mqtt-server...");
-  mqtt_client.publish(MQTT_TEMPERATURE_TOPIC, get_temperature().c_str());
+  mqtt_client.publish(MQTT_TEMPERATURE_TOPIC, String(get_temperature()).c_str());
   Serial.println("Done!");
   Serial.println("Send humidity to mqtt-server...");
-  mqtt_client.publish(MQTT_HUMIDITY_TOPIC, get_humidity().c_str());
+  mqtt_client.publish(MQTT_HUMIDITY_TOPIC, String(get_humidity()).c_str());
   Serial.println("Done!");
 }
 
-String get_temperature() {
+float get_temperature() {
   dht.temperature().getEvent(&event);
   if (isnan(event.temperature)) {
     Serial.println("Error reading temperature!");
   }
 
-  Serial.println("Temperature: " + get_temperature() + "C");
+  Serial.println("Temperature: " + String(event.temperature) + "C");
 
-  return String(event.temperature);
+  return event.temperature;
 }
 
-String get_humidity() {
+float get_humidity() {
   dht.humidity().getEvent(&event);
-  if (isnan(event.relative_humidity)) {
+    if (isnan(event.relative_humidity)) {
     Serial.println("Error reading humidity!");
   }
 
-  Serial.println("Humidity: " + get_humidity() + "%");
+  Serial.println("Humidity: " + String(event.relative_humidity) + "%");
 
-  return String(event.relative_humidity);
+  return event.relative_humidity;
 }
