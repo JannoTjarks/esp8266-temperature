@@ -1,6 +1,6 @@
 #include <Adafruit_Sensor.h>
 #include <Arduino.h>
-#include <DHT_U.h>
+#include <DHT.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
@@ -11,10 +11,10 @@ void loop();
 void setup_wifi();
 void mqtt_reconnect();
 void send_measurements_to_mqtt();
-String get_temperature();
-String get_humidity();
+float get_temperature();
+float get_humidity();
 
-DHT_Unified dht(DHT_PIN, DHT_TYPE);
+DHT dht(DHT_PIN, DHT_TYPE);
 sensors_event_t event;
 
 WiFiClient espClient;
@@ -73,32 +73,39 @@ void mqtt_reconnect() {
 }
 
 void send_measurements_to_mqtt() {
-  Serial.println("Send temperature to mqtt-server...");
-  mqtt_client.publish(MQTT_TEMPERATURE_TOPIC, get_temperature().c_str());
-  Serial.println("Done!");
-  Serial.println("Send humidity to mqtt-server...");
-  mqtt_client.publish(MQTT_HUMIDITY_TOPIC, get_humidity().c_str());
-  Serial.println("Done!");
+  float temperature = get_temperature();
+  if(!isnan(temperature)){
+    Serial.println("Send temperature to mqtt-server...");
+    mqtt_client.publish(MQTT_TEMPERATURE_TOPIC, String(temperature).c_str());
+    Serial.println("Done!");
+  }
+
+  float humidity = get_humidity();
+  if(!isnan(humidity)){
+    Serial.println("Send humidity to mqtt-server...");
+    mqtt_client.publish(MQTT_HUMIDITY_TOPIC, String(humidity).c_str());
+    Serial.println("Done!");
+  }
 }
 
-String get_temperature() {
-  dht.temperature().getEvent(&event);
-  if (isnan(event.temperature)) {
+float get_temperature() {
+  float temperature = dht.readTemperature();
+  if (isnan(temperature)) {
     Serial.println("Error reading temperature!");
   }
 
-  Serial.println("Temperature: " + get_temperature() + "C");
+  Serial.println("Temperature: " + String(temperature) + "C");
 
-  return String(event.temperature);
+  return temperature;
 }
 
-String get_humidity() {
-  dht.humidity().getEvent(&event);
-  if (isnan(event.relative_humidity)) {
+float get_humidity() {
+  float humidity = dht.readHumidity();
+  if (isnan(humidity)) {
     Serial.println("Error reading humidity!");
   }
 
-  Serial.println("Humidity: " + get_humidity() + "%");
+  Serial.println("Humidity: " + String(humidity) + "%");
 
-  return String(event.relative_humidity);
+  return humidity;
 }
