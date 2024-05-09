@@ -34,3 +34,11 @@ This is a blueprint of the configuration.h:
 #define MQTT_TEMPERATURE_TOPIC "<temperature-topic>"
 #define MQTT_HUMIDITY_TOPIC "<humidity-topic>"
 ```
+
+## upload
+I use the following command to run the upload:
+```bash
+pio run -t upload && pio device monitor -b 115200
+```
+
+This also monitors the serial out.
