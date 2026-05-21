@@ -73,14 +73,14 @@ void mqtt_reconnect() {
 
 void send_measurements_to_mqtt() {
   float temperature = get_temperature();
-  if(!isnan(temperature)){
+  if (!isnan(temperature)) {
     Serial.println("Send temperature to mqtt-server...");
     mqtt_client.publish(MQTT_TEMPERATURE_TOPIC, String(temperature).c_str());
     Serial.println("Done!");
   }
 
   float humidity = get_humidity();
-  if(!isnan(humidity)){
+  if (!isnan(humidity)) {
     Serial.println("Send humidity to mqtt-server...");
     mqtt_client.publish(MQTT_HUMIDITY_TOPIC, String(humidity).c_str());
     Serial.println("Done!");
